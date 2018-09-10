@@ -67,7 +67,7 @@ docker-deploy-mqtt would subscribe to `/docker-deploy-mqtt/${ddm_token}` topic. 
 
 
 # Docker Image
-Get the image from [here](https://hub.docker.com/r/akashbabu256/docker-deploy-mqtt/) Or build it yourself by clone this repo and run:
+Get the image from [here](https://hub.docker.com/r/akashbabu256/docker-deploy-mqtt/) or build it yourself by cloning this repo and run:
 > docker build -t docker-deploy-mqtt .
 
 
