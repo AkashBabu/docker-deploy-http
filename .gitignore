@@ -59,3 +59,20 @@ typings/
 
 # next.js build output
 .next
+
+# package lock
+package-lock.json
+
+# VSCode 
+sample.launch.json
+.vscode/
+
+# build files
+dist/
+
+# Test files
+ddm_config.json
+ddm_token.txt
+docker_user.txt
+docker_pass.txt
+.int_token
