@@ -2,16 +2,15 @@
 This library is inspired by [docker-deploy-webhook](https://github.com/iaincollins/docker-deploy-webhook).  
 (Please read about MQTT protocol before proceeding with the rest of the document)  
 
-MQTT Hook for automated deployment of images to docker-swarm on local-machines.
-(*Note: Please use this library only if your deployment target machine is not on the cloud or if your machine does not have a static IP address. If not, then consider using [this](https://github.com/iaincollins/docker-deploy-webhook))
+MQTT Hook for automated deployment of images to docker-swarm on any machine(Irrespective of global/static/dynamic/local IP).
 
 <!-- Here is a [blog]() about how to integrate this library with gitlab-ci -->
 
 # Docs
 
 ## Environment Variables
-**CONFIG** (*Default to 'production'*)  
-Informs deployment process about which configuration to pick from ddm_config.json
+**CONFIG** (*Defaults to 'production'*)  
+Information about which configuration to pick from ddm_config.json (Sample file described below)
 
 ## Docker-Config
 **broker_url**  
@@ -32,18 +31,18 @@ Docker registry name (Ex. registry.gitlab.com)
 ```
 In here you can specify different environments according to your needs. Each environment can have any number of images configured to be deployed onto the docker-swarm. 
 
-* **environment**  
-    It is used distinguish between different types of deployment preferences. For instance one may choose to deploy only `latest` versions on `production` while test all the versions on staging environment
-* **image-name:image-tag**  
-    `<image-name>` corresponds to the docker image to be deployed, whereas `<image-tag>` can be exactly the tag that you desire to deploy or it can match multiple tags based on pattern matching. *`<image-tag>` defaults to latest*.    
+* **\<environment\>**  
+    It's used to distinguish between different types of deployment preferences(like production/staging/testing etc). For instance one may choose to deploy only `latest` versions on `production`, while deploy every single image on staging environment.
+* **\<image-name\>:\<image-tag\>**  
+    `<image-name>` corresponds to the docker image-name to be deployed and `<image-tag>` is the docker image-tag. `<image-tag>` also supports pattern matching (*`<image-tag>` defaults to latest*)  
     Hence all the below patterns are valid
     * `helloworld` *(By default tag is `latest`)*
     * `helloworld:*`
     * `helloworld:test_*`
     * `helloworld:latest`
-    * `helloworld:!danger` *(This corresponds to all images except `danger`)*  
-    For more details visit [matcher](https://www.npmjs.com/package/matcher)
-* **service-name**  
+    * `helloworld:!ignored` *(This corresponds to all images except `ignored` tag)*  
+    For more details of supported patterns visit [matcher](https://www.npmjs.com/package/matcher)
+* **\<service-name\>**  
     Docker-swarm service name whose image is intended to be updated.
 
 ## Docker-Secrets
@@ -57,7 +56,7 @@ In here you can specify different environments according to your needs. Each env
     Docker login - password
 
 ## MQTT-Topic to publish
-docker-deploy-mqtt would subscribe to `/docker-deploy-mqtt/${ddm_token}` topic. So your CI/CD design must include a step to publish on the same MQTT Topic, with the message in the following format:
+docker-deploy-mqtt would subscribe to `/docker-deploy-mqtt/${ddm_token}` topic. So your CI/CD design must include a step to publish on the same MQTT Topic with the message in the following format:
 ```JSON
 {
     "name"  : "<image-name>(Without Tag)",
@@ -132,7 +131,7 @@ Get the image from [here](https://hub.docker.com/r/akashbabu256/docker-deploy-mq
 
 ## Caveats
 * Do not include (+,#) in ddm_tokens
-* Do not include `'` in messages as it will be replaced with `"`
+* Be careful when wrapping CI/CD VARIABLES in `'`(single quotes) as they will be considered as strings. Hence suggested solution is to wrap the entire string in `"`(double quotes) and then use `'`(single quotes) for inner strings.
 
 ## Contributions
 For contributions, please take up the tasks in Roadmap or If you find any potential improvement to this library, feel free to create a PR or raise an issue for the same. 
