@@ -149,4 +149,4 @@ For contributions, please take up the tasks in Roadmap or If you find any potent
    
 
 # Roadmap
-[ ] Notification support
+* [ ] Notification support
