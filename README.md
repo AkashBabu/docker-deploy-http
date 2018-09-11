@@ -146,7 +146,7 @@ For contributions, please take up the tasks in Roadmap or If you find any potent
 
 * *How to update config.json into the running docker-deploy-mqtt service?*  
     > docker service update --config-rm ddm_config --config-add ddm_config_updated --force docker-deploy-mqtt
- 
+   
 
 # Roadmap
 [ ] Notification support
