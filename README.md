@@ -150,3 +150,5 @@ For contributions, please take up the tasks in Roadmap or If you find any potent
 
 # Roadmap
 * [ ] Notification support
+* [ ] Add hook support after deployment
+* [ ] Design a way to check if any images has been updated on every restart
