@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.codeclimate.yml
+.dockerignore
+.eslintrc
+.gitignore
+.git/
+.npmignore
+.travis.yml
+package-lock.json
+README.md
+
+config.json
+docker_creds.json
+secret.txt

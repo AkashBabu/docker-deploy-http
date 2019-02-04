@@ -59,3 +59,15 @@ typings/
 
 # next.js build output
 .next
+
+# VSCode 
+sample.launch.json
+.vscode/
+
+# build files
+dist/
+
+# Test files
+config.json
+secret.txt
+docker_creds.json
