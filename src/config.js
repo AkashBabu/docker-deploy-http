@@ -9,7 +9,9 @@ const CONFIG = {
     PORT   : process.env.PORT || 9000,
     SECRET : fs.readFileSync(path.join(__dirname, '../secret.txt'), {
         encoding: 'utf-8',
-    }),
+    })
+    .replace('\r', '')
+    .replace('\n', ''),
     REGISTRY     : config.registry,
     DEPLOYMENTS  : config.deployments,
     DOCKER_CREDS : {
