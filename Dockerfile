@@ -1,5 +1,5 @@
 # Stage-1 build
-FROM node:latest as build
+FROM node:10.13 as build
 
 RUN mkdir /docker-deploy-http
 WORKDIR /docker-deploy-http
@@ -12,7 +12,7 @@ RUN ["npm", "run", "build"]
 
 
 # Stage-2 dependencies
-FROM node:latest as dep
+FROM node:10.13 as dep
 
 RUN mkdir /docker-deploy-http
 WORKDIR /docker-deploy-http
@@ -22,7 +22,7 @@ RUN ["npm", "i", "--only=production"]
 
 
 # Stage-3 final image
-FROM node:alpine
+FROM node:10.13-alpine
 
 # install docker
 RUN apk update && apk add docker
