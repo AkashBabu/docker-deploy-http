@@ -44,9 +44,15 @@ function getImageConfig(name, tag = 'latest') {
  * @param {boolean} getReply Whether or not to return `stdout`
  */
 async function exec(cmd, getReply = false) {
+    logger.debug('Executing:', cmd);
     return new Promise((resolve, reject) => {
-        child_process.exec(cmd, (err, stdout) => {
-            if (err) return reject(err);
+        child_process.exec(cmd, (err, stdout, stderr) => {
+            logger.debug(stdout);
+            logger.error(stderr);
+
+            if (err) {
+                return reject(err);
+            }
             resolve(getReply ? stdout : undefined);
         });
     });
