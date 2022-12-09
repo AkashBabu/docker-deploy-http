@@ -51,7 +51,7 @@
         "babel-polyfill": "^6.26.0",
         "babel-runtime": "^6.26.0",
         "body-parser": "^1.18.3",
-        "express": "^4.16.4",
+        "express": "^4.17.3",
         "jsonfile": "^4.0.0",
         "matcher": "^1.1.1",
         "shortid": "^2.2.13",
